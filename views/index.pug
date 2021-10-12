@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  section#todo
+    div.container
+      div#form-container
+        form#form.form(action="/", method='POST')
+          div.form-group.form-group-title
+              h2.text-primary Task
+              input#task-title.form-control(name="task", type="text", placeholder="Enter a task", aria-describedby="help-task-name")
+      br
+      h2.text-primary TO-DO
+      hr
+      div#tasks-container
+        for task in tasks
+          div.row
+            div.col
+              div.form-group.mb-2
+                //- i.fa.fa-trash
+                p #{task.task}
+            div.col.d-flex.flex-row-reverse
+              form#form-inline(action="/"+task.id, method='DELETE')
+                button#btn.btn-secondry.mb-2.p-2(type="submit") Delete Task
+                  i.fa.fa-trash
+
+              form#form-inline(action="/edit/"+task.id, method='GET')
+                button#btn.btn-secondry.mb-2.p-2(type="submit") Edit Task
+                  i.fa.fa-trash

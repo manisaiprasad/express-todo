@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  section#todo
+    div.container
+      div#form-container
+        form#form.form(action="/edit/"+task.id, method='POST')
+          div.form-group.form-group-title
+              h2.text-primary Edit Task
+              p Edit the task below
+              input#task-title.form-control(name="task", type="text", value= task.task, placeholder="Enter a task", aria-describedby="help-task-name")

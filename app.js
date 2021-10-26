@@ -19,31 +19,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const knex = require('knex')({
-  client: 'mysql',
-  connection: {
-    host : '127.0.0.1',
-    port : 3306,
-    user : 'root',
-    password : '12345678',
-    database : 'todo'
-  },
-  migrations: {
-    tableName: 'migrations'
-  }
-});
-
 app.use('/', indexRouter);
 app.use('/:id', indexRouter);
 app.use('/edit', indexRouter);
 app.use('/edit/:id', indexRouter);
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 
 // error handler
 app.use(function(err, req, res, next) {
